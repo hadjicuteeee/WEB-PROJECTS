@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Reservation and Booking System</title>
+   <link rel="icon" type="image/png" href="images/Adobe Express - file.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <header>
+    
+    <img src="Adobe Express - file.png" alt="Logo">
+    <nav>
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#facilities">Facilities</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  
+  <section class="hero" id="home">
+    <h1>Event Reservation and Booking System for Campus Activities</h1>
+    <p>Effortlessly manage your campus activities and events with our modern reservation system.</p>
+    <button>Register</button>
+  </section>
+
+
+  <section id="about" class="hidden">
+    <h2>About Us</h2>
+    <!-- palitan nyo if may much better sa sentences para mag compliment sa system -->
+    <p>
+      Our Event Reservation and Booking System is designed to make scheduling and managing campus events simple and efficient.
+      With a clean interface and optimized process, students and faculty can easily reserve facilities anytime, anywhere.
+    </p>
+  </section>
+  <!-- palitan nyo nalang images if ever meron kayong mas better :) -->
+  <section id="facilities" class="hidden">
+    <h2>Facilities</h2>
+    <div class="facilities">
+      <div class="facility hidden">
+        <img src="rgergta.jpg" alt="Room">
+        <h3>Room</h3>
+      </div>
+      <div class="facility hidden">
+        <img src="bball.jpeg" alt="Gym">
+        <h3>Gym</h3>
+      </div>
+      <div class="facility hidden">
+        <img src="multa.jpeg" alt="Multipurpose Hall">
+        <h3>Multipurpose Hall</h3>
+      </div>
+      <div class="facility hidden">
+        <img src="library.jpeg" alt="Library">
+        <h3>Library</h3>
+      </div>
+    </div>
+  </section>
+
+ 
+  <section id="contact" class="hidden">
+    <h2>Contact Us</h2>
+    <!-- then change nyo uli guys mga tamang contact, di ko kasi alam eh. thank you -->
+    <div class="contact-info">
+      <p>Email: ailly@gmail.com</p>
+      <p>Phone: +63 966 651 9466</p>
+      <p>Address: Dasmariñas, Cavite</p>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2025 Event Reservation and Booking System. All rights reserved.</p>
+  </footer>
+  <script>
+    const observerOptions = { threshold: 0.2 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('show', entry.isIntersecting);
+      });
+    }, observerOptions);
+    document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    window.addEventListener('scroll', () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
